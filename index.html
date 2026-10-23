@@ -113,6 +113,14 @@
     @media (max-width: 520px) { .barrow { grid-template-columns: 90px 1fr 56px; } }
 
     @media (prefers-color-scheme: dark) { h1 mark, .big span { background: linear-gradient(transparent 4%, var(--lime) 4%, var(--lime) 98%, transparent 98%); } }
+
+    /* polish: aligned inputs, chart label halo, next-step link */
+    .inputs, .adv { align-items: end; }
+    #chart .cap { paint-order: stroke; stroke: var(--paper-raised); stroke-width: 4px; stroke-linejoin: round; }
+    .next-step { border: 1px solid var(--rule); border-left: 4px solid var(--ink); background: var(--paper-raised); padding: 14px 16px; margin: 24px 0 0; }
+    .next-step .k { color: var(--ink-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+    .next-step a { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; text-transform: lowercase; }
+    .next-step p { margin: 4px 0 0; color: var(--ink-muted); font-size: 0.92rem; }
   </style>
 </head>
 <body>
@@ -126,15 +134,15 @@
     <section class="panel">
       <div class="inputs">
         <label class="field">People you can reach (audience size)
-          <input type="number" id="aud" min="1" step="1000" inputmode="numeric"></label>
+          <input autocomplete="off" type="number" id="aud" min="1" step="1000" inputmode="numeric"></label>
         <label class="field">Budget <span class="suffix">$</span>
-          <input type="number" id="bud" min="1" step="100" inputmode="numeric"></label>
+          <input autocomplete="off" type="number" id="bud" min="1" step="100" inputmode="numeric"></label>
         <label class="field">CPM <span class="suffix">$ per 1,000 impressions</span>
-          <input type="number" id="cpm" min="0.01" step="0.5" inputmode="decimal"></label>
+          <input autocomplete="off" type="number" id="cpm" min="0.01" step="0.5" inputmode="decimal"></label>
         <label class="field">Exposures you count as enough
-          <input type="number" id="n" min="1" max="20" step="1" inputmode="numeric"></label>
+          <input autocomplete="off" type="number" id="n" min="1" max="20" step="1" inputmode="numeric"></label>
         <label class="field">How evenly delivery lands on people
-          <select id="r"><option value="1000">Evenly (Poisson)</option><option value="2" selected>Somewhat unevenly (shape 2)</option><option value="0.7">Very unevenly (shape 0.7)</option></select></label>
+          <select autocomplete="off" id="r"><option value="1000">Evenly (Poisson)</option><option value="2" selected>Somewhat uneven (2)</option><option value="0.7">Very uneven (0.7)</option></select></label>
       </div>
       <p class="hint">No platform publishes how evenly it spreads impressions. Pick the option that fits and check the result against your platform's reach and frequency report. "Enough" is your call: there is no universal number.</p>
       <div id="err" role="alert"></div>
@@ -194,6 +202,7 @@ past enough = (f - E[min(k, n)]) / f</div>
       <p><b>More frequency is not always waste.</b> Message fatigue is real, but so is the need for enough exposures to be noticed. Past "enough" is your own threshold, not a law.</p>
     </section>
 
+    <section class="next-step"><div class="k">next</div><a href="https://long-short-planner.benjads.com/">long and short planner</a><p>Turn the budget into a plan: the split, the share it buys, and what it takes to grow.</p></section>
     <footer class="site-foot">
       <picture><source media="(prefers-color-scheme: dark)" srcset="logo/benjads-footnote-paper-transparent.svg"><img src="logo/benjads-footnote-olive-transparent.svg" alt="ben.j.ads"></picture>
       <p><span class="tag">1</span>Negative binomial exposure distribution (Ehrenberg, Sharp). Marketing science, given away free, for people who spend money.</p>
